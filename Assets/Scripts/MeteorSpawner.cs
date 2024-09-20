@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spawner : MonoBehaviour
+public class MeteorSpawner : MonoBehaviour
 {
-    [SerializeField] float spawnRate = 2f;
-    [SerializeField] GameObject enemyPrefab;
-    
-    
+    [SerializeField] float spawnRate = 6f;
+    [SerializeField] GameObject meteorPrefab;
+
+
     float xMin;
     float ySpawn;
     float xMax;
@@ -19,18 +19,18 @@ public class Spawner : MonoBehaviour
         xMax = Camera.main.ViewportToWorldPoint(new Vector3(.9f, 0, 0)).x;
         ySpawn = Camera.main.ViewportToWorldPoint(new Vector3(0, 1.25f, 0)).y;
 
-        InvokeRepeating("SpawnEnemy", 0, spawnRate);
+        InvokeRepeating("SpawnMeteor", 0, spawnRate);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    void SpawnEnemy()
+    void SpawnMeteor()
     {
         float randx = Random.Range(xMin, xMax);
-        Instantiate(enemyPrefab, new Vector3(randx, ySpawn, 0), Quaternion.identity);
+        Instantiate(meteorPrefab, new Vector3(randx, ySpawn, 0), Quaternion.identity);
     }
 }
